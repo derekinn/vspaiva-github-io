@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parabéns Versus Paiva</title>
+    <style>
+        body {
+            background-image: linear-gradient(to bottom, red 50%, black 50%);
+            background-size: 100% 80px;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
+        }
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+        .question {
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: #1a1a1a;
+            color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #333;
+        }
+        #video-container {
+            /* Começa escondido por padrão */
+            display: none;
+            margin-top: 20px;
+        }
+        video {
+            width: 80%;
+            max-width: 640px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <img src="logo-flamengo.png" alt="Logo do Flamengo" class="logo">
+
+    <div class="question">É seu aniversário hoje?</div>
+    <div class="buttons">
+        <button id="yes-btn">Sim</button>
+        <button id="no-btn">Não</button>
+    </div>
+
+    <div id="video-container">
+        <video id="parabens-video" controls>
+            <source src="parabens.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos HTML5.
+        </video>
+    </div>
+
+    <script>
+        // Pega os elementos da página
+        const yesBtn = document.getElementById('yes-btn');
+        const videoContainer = document.getElementById('video-container');
+        const video = document.getElementById('parabens-video');
+
+        // Adiciona o evento de clique ao botão "Sim"
+        yesBtn.addEventListener('click', function() {
+            // Verifica se o vídeo está escondido
+            if (videoContainer.style.display === 'none' || videoContainer.style.display === '') {
+                // Se estiver escondido, mostra e toca o vídeo
+                videoContainer.style.display = 'block';
+                video.play();
+            } else {
+                // Se estiver visível, esconde o vídeo e pausa
+                videoContainer.style.display = 'none';
+                video.pause();
+                video.currentTime = 0; // Reinicia o vídeo para o começo
+            }
+        });
+
+        document.getElementById('no-btn').addEventListener('click', function() {
+            // Não acontece nada
+        });
+    </script>
+
+</body>
+</html>
